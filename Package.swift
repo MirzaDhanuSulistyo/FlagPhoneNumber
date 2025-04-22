@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
@@ -9,13 +9,16 @@ let package = Package(
     products: [
         .library(
             name: "FlagPhoneNumber",
-            targets: ["FlagPhoneNumber"]
-        ),
+            targets: ["FlagPhoneNumber"]),
     ],
+    dependencies: [],
     targets: [
         .target(
             name: "FlagPhoneNumber",
-            path: "Sources"
+            dependencies: [],
+            path: "Sources",
+            resources: [.process("Resources")],
+            exclude: ["Info.plist"]
         )
     ]
 )
