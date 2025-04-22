@@ -8,14 +8,20 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "FPNCountryPicker",
-            targets: ["FPNCountryPicker"]
+            name: "FlagPhoneNumber",
+            targets: ["FlagPhoneNumber"]
         ),
     ],
+    dependencies: [],
     targets: [
         .target(
-            name: "FPNCountryPicker",
-            path: "Sources/FPNCountryPicker"
+            name: "FlagPhoneNumber",
+            dependencies: [],
+            path: "Sources",
+            exclude: ["Info.plist"],
+            resources: [
+                .process("Resources")
+            ]
         )
     ]
 )
