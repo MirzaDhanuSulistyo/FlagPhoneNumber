@@ -16,7 +16,7 @@ let package = Package(
         .target(
             name: "FlagPhoneNumber",
             dependencies: [],
-            path: "Sources",
+            path: "Sources/FPNCountryPicker",
             resources: [.process("Resources")],
             exclude: ["Info.plist"]
         )
