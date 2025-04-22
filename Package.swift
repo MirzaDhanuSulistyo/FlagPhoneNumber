@@ -18,7 +18,17 @@ let package = Package(
             name: "FlagPhoneNumber",
             dependencies: [],
             path: "Sources",
-            exclude: ["Info.plist"],
+            exclude: [
+                "Info.plist",
+                "FlagPhoneNumber.h",
+                "FlagPhoneNumber-Bridging-Header.h"
+            ],
+            sources: [
+                ".",
+                "FPNCountryPicker",
+                "Helpers",
+                "libPhoneNumber"
+            ],
             resources: [
                 .process("Resources")
             ]
