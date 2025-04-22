@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 import PackageDescription
 
 let package = Package(
@@ -8,17 +8,14 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "FlagPhoneNumber",
-            targets: ["FlagPhoneNumber"]),
+            name: "FPNCountryPicker",
+            targets: ["FPNCountryPicker"]
+        ),
     ],
-    dependencies: [],
     targets: [
         .target(
-            name: "FlagPhoneNumber",
-            dependencies: [],
-            path: "Sources/FPNCountryPicker",
-            resources: [.process("Resources")],
-            exclude: ["Info.plist"]
+            name: "FPNCountryPicker",
+            path: "Sources/FPNCountryPicker"
         )
     ]
 )
