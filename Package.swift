@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "FlagPhoneNumber",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v11),
     ],
     products: [
         .library(
@@ -12,26 +12,15 @@ let package = Package(
             targets: ["FlagPhoneNumber"]
         ),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "FlagPhoneNumber",
             dependencies: [],
             path: "Sources",
-            exclude: [
-                "Info.plist",
-                "FlagPhoneNumber.h",
-                "FlagPhoneNumber-Bridging-Header.h"
-            ],
-            sources: [
-                ".",
-                "FPNCountryPicker",
-                "Helpers",
-                "libPhoneNumber"
-            ],
-            resources: [
-                .process("Resources")
+            publicHeadersPath: "include", // If you have .h files you want to expose
+            cSettings: [
+                .headerSearchPath("Sources") // If needed to specify search paths for your C/Obj-C files
             ]
-        )
+        ),
     ]
 )
