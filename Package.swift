@@ -15,11 +15,10 @@ let package = Package(
     targets: [
         .target(
             name: "FlagPhoneNumber",
-            dependencies: [],
-            path: "Sources",
-            publicHeadersPath: "include", // If you have .h files you want to expose
+            path: "Sources",   // This is where your .h and .m (or .c) files are
+            publicHeadersPath: "include",  // Expose headers if needed
             cSettings: [
-                .headerSearchPath("Sources") // If needed to specify search paths for your C/Obj-C files
+                .headerSearchPath("Sources")  // If needed to specify where to find header files
             ]
         ),
     ]
