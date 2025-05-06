@@ -15,7 +15,7 @@ let package = Package(
     targets: [
         .target(
             name: "FlagPhoneNumber",
-            path: "Sources"
+            path: "FlagPhoneNumber/Sources"
         )
     ]
 )
