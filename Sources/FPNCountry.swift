@@ -10,7 +10,7 @@ public struct FPNCountry: Equatable {
 	init(code: String, name: String, phoneCode: String) {
 		self.name = name
 		self.phoneCode = phoneCode
-		self.code = FPNCountryCode(rawValue: code)!
+		self.code = FPNCountryCode(rawValue: code) ?? .US
 
 		if let flag = UIImage(named: code) {
 			self.flag = flag
