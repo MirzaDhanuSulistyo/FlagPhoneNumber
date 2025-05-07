@@ -17,7 +17,8 @@ public extension Bundle {
 		if let path = bundle.path(forResource: "FlagPhoneNumber", ofType: "bundle") {
 			return Bundle(path: path)!
 		} else {
-			return bundle
+			// If FlagPhoneNumber.bundle is not found, return the main bundle
+			return Bundle.main
 		}
 	}
 }
