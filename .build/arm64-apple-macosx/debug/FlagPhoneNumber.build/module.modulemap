@@ -1,4 +1,4 @@
 module FlagPhoneNumber {
-    header "/Users/olsera/Work/SPM/FlagPhoneNumber/.build/arm64-apple-macosx/debug/FlagPhoneNumber.build/FlagPhoneNumber-Swift.h"
+    header "/Users/olsera/Work/SPM/backup/FlagPhoneNumber/.build/arm64-apple-macosx/debug/FlagPhoneNumber.build/FlagPhoneNumber-Swift.h"
     requires objc
 }

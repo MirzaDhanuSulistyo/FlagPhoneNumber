@@ -1,4 +1,4 @@
 module libPhoneNumber {
-    umbrella "/Users/olsera/Work/SPM/FlagPhoneNumber/Sources/libPhoneNumber"
+    umbrella "/Users/olsera/Work/SPM/backup/FlagPhoneNumber/Sources/libPhoneNumber"
     export *
 }
