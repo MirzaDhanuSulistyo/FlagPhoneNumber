@@ -13,12 +13,18 @@ public extension Bundle {
 
 	@objc static func FlagPhoneNumber() -> Bundle {
 		let bundle = Bundle(for: FPNTextField.self)
-
+		
+		// First try to find the resource bundle
 		if let path = bundle.path(forResource: "FlagPhoneNumber", ofType: "bundle") {
 			return Bundle(path: path)!
-		} else {
-			// If FlagPhoneNumber.bundle is not found, return the main bundle
-			return Bundle.main
 		}
+		
+		// If not found, try to find the resources in the module bundle
+		if let moduleBundle = Bundle(identifier: "com.flagphonenumber.FlagPhoneNumber") {
+			return moduleBundle
+		}
+		
+		// If all else fails, return the main bundle
+		return Bundle.main
 	}
 }

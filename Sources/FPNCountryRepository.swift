@@ -20,36 +20,36 @@ open class FPNCountryRepository {
 
 	// Populates the metadata from the included json file resource
 	private func getAllCountries() -> [FPNCountry] {
-		let bundle: Bundle = Bundle.FlagPhoneNumber()
-		let resource: String = "countryCodes"
-		let jsonPath = bundle.path(forResource: resource, ofType: "json")
+		let bundle = Bundle.FlagPhoneNumber()
+		// Specify the Resources subdirectory
+		guard let jsonPath = bundle.path(forResource: "Resources/countryCodes", ofType: "json") else {
+			print("Error: countryCodes.json not found in bundle at Resources/countryCodes.json")
+			return []
+		}
 
-		assert(jsonPath != nil, "Resource file is not found in the Bundle")
-
-		let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath!))
-
-		assert(jsonPath != nil, "Resource file is not found")
+		guard let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
+			print("Error: Failed to load data from \(jsonPath)")
+			return []
+		}
 
 		var countries = [FPNCountry]()
-
 		do {
-			if let jsonObjects = try JSONSerialization.jsonObject(with: jsonData!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSArray {
-
-				for jsonObject in jsonObjects {
-					guard let countryObj = jsonObject as? NSDictionary else { return countries }
-					guard let code = countryObj["code"] as? String, let phoneCode = countryObj["dial_code"] as? String, let name = countryObj["name"] as? String else { return countries }
-
-
+			if let jsonObjects = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [NSDictionary] {
+				for countryObj in jsonObjects {
+					guard let code = countryObj["code"] as? String,
+						let phoneCode = countryObj["dial_code"] as? String,
+						let name = countryObj["name"] as? String else {
+						continue
+					}
 					let country = FPNCountry(code: code, name: locale.localizedString(forRegionCode: code) ?? name, phoneCode: phoneCode)
-
 					countries.append(country)
 				}
-
 			}
-		} catch let error {
-			assertionFailure(error.localizedDescription)
+		} catch {
+			print("Error parsing JSON: \(error.localizedDescription)")
 		}
-		return countries.sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == ComparisonResult.orderedAscending })
+		
+		return countries.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 	}
 
 	private func getAllCountries(excluding countryCodes: [FPNCountryCode]) -> [FPNCountry] {
